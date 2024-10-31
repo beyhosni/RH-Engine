@@ -1,0 +1,21 @@
+<h2>Demandes de Congé</h2>
+
+<form (ngSubmit)="submitLeaveRequest()">
+  <label for="startDate">Date de début :</label>
+  <input type="date" [(ngModel)]="newLeaveRequest.startDate" name="startDate" required />
+
+  <label for="endDate">Date de fin :</label>
+  <input type="date" [(ngModel)]="newLeaveRequest.endDate" name="endDate" required />
+
+  <label for="type">Type de congé :</label>
+  <input type="text" [(ngModel)]="newLeaveRequest.type" name="type" required />
+
+  <button type="submit">Envoyer la demande</button>
+</form>
+
+<ul>
+  <li *ngFor="let request of leaveRequests">
+    {{ request.startDate | date }} - {{ request.endDate | date }} : {{ request.type }}
+  </li>
+</ul>
+
