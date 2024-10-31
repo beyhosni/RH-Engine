@@ -1,5 +1,7 @@
 // src/employee/employee.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Payroll } from "../payroll/payroll.entity";
+import { Leave } from "../leave/leave.entity";
 
 @Entity()
 export class Employee {
@@ -20,4 +22,10 @@ export class Employee {
 
   @Column({ type: 'date' })
   hireDate: Date;
+
+  @OneToMany(() => Payroll, (payroll) => payroll.employee)
+  payrolls: Payroll[];
+
+  @OneToMany(() => Leave, (leave) => leave.employee)
+  leaves: Leave[];
 }
